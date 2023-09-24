@@ -1,0 +1,28 @@
+{
+  "name": "element-plus-el-table-draggable",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@highlightjs/vue-plugin": "^2.1.0",
+    "@types/sortablejs": "^1.15.2",
+    "element-plus": "^2.3.12",
+    "highlight.js": "^11.8.0",
+    "mockjs": "^1.1.0",
+    "sass": "^1.66.1",
+    "sortablejs": "^1.15.0",
+    "vue": "^3.2.47",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.1.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9",
+    "vue-tsc": "^1.4.2"
+  }
+}
