@@ -83,8 +83,8 @@ const demo = computed({
         :name="key"
         lazy
         v-for="( name, key ) in componentNameMap">
-        name:{{ name }}
-        key:{{ key }}
+        <!-- name:{{ name }}
+        key:{{ key }} -->
         <div>
           <h2>{{ name }}</h2>
           <component :is="components[key]"></component>

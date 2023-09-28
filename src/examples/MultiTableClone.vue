@@ -1,8 +1,9 @@
 <template>
+  <el-alert show-icon type="warning" :closable="false">如果连续拖拽相同行到同一表格 会在行的id相同的情况下出现一些bug 不过一般来说现实场景里也不会有id相同的情况 可以想法禁止拖入已有此数据的表格</el-alert> 
   <el-row :gutter="20">
     <el-col :key="index" :span="24 / lists.length" v-for="(list, index) of lists">
-        <ElTableDraggable :group="{name:'multiTable',pull:'clone'}" @on-end="handleOnEnd">
-          <el-table :data="list">
+        <ElTableDraggable :group="{name:'multiTableClone',pull:'clone'}" @on-end="handleOnEnd">
+          <el-table :data="list" row-key="id">
             <el-table-column
               :key="column.key"
               :label="column.key"
@@ -20,7 +21,7 @@
 <script lang="ts">
 export const show = true
 export const name = "多表格相互拖拽克隆"
-export const nameEn = 'Multi Table Clone(有bug)'
+export const nameEn = 'Multi Table Clone'
 </script>
 <script setup lang='ts'>
 import { reactive } from 'vue';

@@ -1,11 +1,18 @@
 import { EMPTY_FIX_CSS, cleanUp } from "@/utils/dom";
 import { exchange } from "@/utils/utils";
+import { ElMessage } from "element-plus";
 import { toRaw } from "vue";
 
 export const config = {
-  options: (tableCtxMap: any, tableCtx: any, emits: any) => {
+  options: (tableCtxMap: any, tableCtx: any, rest: {
+    emits: any
+  }) => {
+    const { emits } = rest
     return {
       onChoose(evt) {
+        console.log("入参 onChoose", {
+          pullMode: evt.pullMode
+        })
         /**
          * 拖拽开始前对表格进行预处理
          */
@@ -21,17 +28,25 @@ export const config = {
           }
           // debugger
         }
-        console.log(evt.item)
-        evt.item.setAttribute("style", "background:red")
+        // console.log(evt.item)
+        // evt.item.setAttribute("style", "background:red")
       },
       onStart(evt) {
-        const { to, from, pullMode, newIndex, item, oldIndex, willInsertAfter } = evt;
-        console.log("hello!!!! ")
-        console.log("onStart", { to, from, pullMode, newIndex, item, oldIndex })
+        console.log("入参 onChoose", {
+          pullMode: evt.pullMode
+        })
+        // const { to, from, pullMode, newIndex, item, oldIndex, willInsertAfter } = evt;
+        // console.log("hello!!!! ")
+        // console.log("onStart", { to, from, pullMode, newIndex, item, oldIndex })
         // console.log("vm", vm)
       },
       onEnd(evt) {
+        emits("update:loading", true)
+        console.log("入参 onChoose", {
+          pullMode: evt.pullMode
+        })
         const { to, from, pullMode, newIndex, item, oldIndex, willInsertAfter } = evt;
+        // console.log("onEnd 入参", evt, to, from, pullMode, newIndex, item, oldIndex, willInsertAfter, evt.pullMode === pullMode);
         const fromCtx = tableCtxMap.get(from)
         const toCtx = tableCtxMap.get(to)
 
@@ -47,9 +62,10 @@ export const config = {
         if (pullMode === 'clone' && from !== to) {
           to.removeChild(item)
         }
-
+        // console.log("toCtx", toCtx);
+        // toCtx.forceUpdate()
         cleanUp()
-        console.log('调用emits')
+        // console.log('调用emits')
 
         emits("onEnd", {
           fromData: toRaw(fromCtx.props.data),
@@ -59,10 +75,21 @@ export const config = {
           pullMode,
           newIndex,
           oldIndex,
-          willInsertAfter
+          willInsertAfter,
+          // reposition: ,
+          originalEvt: evt
+        }, () => {
+          exchange(newIndex,
+            toCtx.props.data,
+            oldIndex,
+            fromCtx.props.data,
+            pullMode)
         })
-        console.log('调用emits end')
-
+        // console.log('调用emits end')
+        // setTimeout(() => { emits("update:loading", false) }, 3000)
+      },
+      onChange(evt) {
+        console.log("入参 onChange", evt);
       }
     }
   }

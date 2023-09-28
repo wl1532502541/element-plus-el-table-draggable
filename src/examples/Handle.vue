@@ -28,13 +28,13 @@ import ListViewer from '../components/ListViewer.vue'
 import ElTableDraggable from '@/components/ElTableDraggable.vue'
 const list = reactive(createData());
 const code =  `
-<ElTableDraggable handle=".el-icon-rank" v-on="$listeners">
-      <el-table :data="list" row-key="id" border>
-        <el-table-column width="30">
-          <i class="el-icon-rank" />
-        </el-table-column>
-        <el-table-column :key="column.key" :label="column.key" :prop="column.key" v-for="column of columns">
-        </el-table-column>
-      </el-table>
-    </ElTableDraggable>`
+<ElTableDraggable handle=".el-icon-rank">
+  <el-table :data="list" row-key="id" border>
+    <el-table-column width="30">
+      <i class="el-icon-rank" />
+    </el-table-column>
+    <el-table-column :key="column.key" :label="column.key" :prop="column.key" v-for="column of columns">
+    </el-table-column>
+  </el-table>
+</ElTableDraggable>`
 </script>

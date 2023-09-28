@@ -12,14 +12,15 @@ import config from "../config/index"
 const props = withDefaults(defineProps<{tag?:string;isColumn?:boolean}>(),{
   tag: "div",
   isColumn: false, // 列排序
-  animation: 150  // 动画延时
+  animation: 150,  // 动画延时
+  loading: true,
 })
 
 const wrapper = ref(null)
 
 const _sortable = ref(null)
 
-const emits = defineEmits(['onEnd'])
+const emits = defineEmits(['onEnd',"update:loading"])
 
 const makeTableSortAble = ()=>{
   const tableCtxMap = window.__ElTableDraggableContext
@@ -36,6 +37,7 @@ const makeTableSortAble = ()=>{
   const slots = useSlots()
   const slotsDefault = slots.default()
   const tableCtx = slotsDefault[0]
+  tableCtx.tableRef = wrapper
   const tableProps = tableCtx.props
   tableCtxMap.set(tableDom,tableCtx)
   console.log(slotsDefault);
@@ -48,7 +50,7 @@ const makeTableSortAble = ()=>{
   debugger
   // const animation = props.animation
   // 根据不同种类注册option
-  const sortableOptions = options(tableCtxMap,tableContext,emits)
+  const sortableOptions = options(tableCtxMap,tableContext,{emits})
   const commonDragOptions = {
     // group: "group",
     sort: true,
