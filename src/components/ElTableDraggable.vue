@@ -9,7 +9,7 @@ import Sortable from "sortablejs/modular/sortable.complete.esm.js"
 import { getCurrentInstance, onMounted, ref, useAttrs, useSlots, watch } from 'vue';
 import config from "../config/index"
 
-const props = withDefaults(defineProps<{tag?:string;isColumn?:boolean}>(),{
+const props = withDefaults(defineProps<{ tag?: string; isColumn?: boolean }>(), {
   tag: "div",
   isColumn: false, // 列排序
   animation: 150,  // 动画延时
@@ -20,9 +20,9 @@ const wrapper = ref(null)
 
 const _sortable = ref(null)
 
-const emits = defineEmits(['onEnd',"update:loading"])
+const emits = defineEmits(['onEnd', "update:loading"])
 
-const makeTableSortAble = ()=>{
+const makeTableSortAble = () => {
   const tableCtxMap = window.__ElTableDraggableContext
   const instance = getCurrentInstance()
   const children = instance.ctx.$el.children
@@ -30,18 +30,18 @@ const makeTableSortAble = ()=>{
   // const childrenNew = instance?.subTree.children
   const WRAPPER = '.el-table__body-wrapper tbody'
   const tableDom = children[0].querySelector(WRAPPER)
-  if(!tableDom){
+  if (!tableDom) {
     console.error("请插入slot")
-    return 
+    return
   }
   const slots = useSlots()
   const slotsDefault = slots.default()
   const tableCtx = slotsDefault[0]
   tableCtx.tableRef = wrapper
   const tableProps = tableCtx.props
-  tableCtxMap.set(tableDom,tableCtx)
+  tableCtxMap.set(tableDom, tableCtx)
   console.log(slotsDefault);
-  const {options} = config[props.isColumn?'column':'row']
+  const { options } = config[props.isColumn ? 'column' : 'row']
 
   // debugger
   const vm = getCurrentInstance()
@@ -50,7 +50,7 @@ const makeTableSortAble = ()=>{
   debugger
   // const animation = props.animation
   // 根据不同种类注册option
-  const sortableOptions = options(tableCtxMap,tableContext,{emits})
+  const sortableOptions = options(tableCtxMap, tableContext, { emits })
   const commonDragOptions = {
     // group: "group",
     sort: true,
@@ -59,7 +59,7 @@ const makeTableSortAble = ()=>{
     // ghostClass: "ghost",
     // ghostClass: 'blue-background-class',
     // draggable: ".draggable-table-row",
-    draggable: ".el-table__row", 
+    draggable: ".el-table__row",
     // chosenClass: "sortable-drag",
     // handle: ".handle",
     // handle: ".el-table__row",
@@ -107,13 +107,13 @@ const makeTableSortAble = ()=>{
   }
 
   const table = wrapper.value?.querySelector(".el-table__body-wrapper tbody")
-  console.log('table',table)
-  _sortable.value = Sortable.create(table,{
+  console.log('table', table)
+  _sortable.value = Sortable.create(table, {
     ...commonDragOptions,
   })
 }
 const attrs = useAttrs()
-watch(()=>attrs,(options)=>{
+watch(() => attrs, (options) => {
   if (_sortable.value) {
     // todo 过滤掉sortablejs的options里没有的属性
 
@@ -125,11 +125,11 @@ watch(()=>attrs,(options)=>{
       _sortable.value?.option(key, options[key]);
     });
   }
-},{deep:true})
+}, { deep: true })
 
-onMounted(()=>{
+onMounted(() => {
   console.log("on Mounted");
-  if(!window.__ElTableDraggableContext){
+  if (!window.__ElTableDraggableContext) {
     window.__ElTableDraggableContext = new Map()
   }
   makeTableSortAble()

@@ -1,5 +1,5 @@
 import { PullResult } from "sortablejs";
-import { nextTick } from "vue";
+// import { nextTick } from "vue";
 
 /**
  * 将某个元素从某个列表插入到另一个对应位置

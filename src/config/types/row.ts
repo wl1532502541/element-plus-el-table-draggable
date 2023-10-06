@@ -1,6 +1,5 @@
 import { EMPTY_FIX_CSS, cleanUp } from "@/utils/dom";
 import { exchange } from "@/utils/utils";
-import { ElMessage } from "element-plus";
 import { toRaw } from "vue";
 
 export const config = {
@@ -9,7 +8,7 @@ export const config = {
   }) => {
     const { emits } = rest
     return {
-      onChoose(evt) {
+      onChoose(evt: any) {
         console.log("入参 onChoose", {
           pullMode: evt.pullMode
         })
@@ -31,7 +30,7 @@ export const config = {
         // console.log(evt.item)
         // evt.item.setAttribute("style", "background:red")
       },
-      onStart(evt) {
+      onStart(evt: any) {
         console.log("入参 onChoose", {
           pullMode: evt.pullMode
         })
@@ -88,7 +87,7 @@ export const config = {
         // console.log('调用emits end')
         // setTimeout(() => { emits("update:loading", false) }, 3000)
       },
-      onChange(evt) {
+      onChange(evt: any) {
         console.log("入参 onChange", evt);
       }
     }

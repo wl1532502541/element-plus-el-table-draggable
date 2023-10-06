@@ -24,7 +24,7 @@ export const columns = [
 const mockTemplate = Object.fromEntries(columns.map(({ key, type }) => [key, `@${type}`]))
 
 export function createData(total = 5) {
-  return Array.from(new Array(total)).map((key, index) => {
+  return Array.from(new Array(total)).map((_, index) => {
     return {
       ...Mock.mock(mockTemplate),
       index

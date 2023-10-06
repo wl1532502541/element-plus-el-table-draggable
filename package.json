@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
+    "build-demo": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@highlightjs/vue-plugin": "^2.1.0",
+    "@types/mockjs": "^1.0.8",
     "@types/sortablejs": "^1.15.2",
     "element-plus": "^2.3.12",
     "highlight.js": "^11.8.0",
