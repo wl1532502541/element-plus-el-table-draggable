@@ -57,7 +57,6 @@ const makeTableSortAble = () => {
     animation: 150,
     ...vm?.attrs,
     // ghostClass: "ghost",
-    // ghostClass: 'blue-background-class',
     // draggable: ".draggable-table-row",
     draggable: ".el-table__row",
     // chosenClass: "sortable-drag",
