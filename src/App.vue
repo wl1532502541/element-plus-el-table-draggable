@@ -32,17 +32,16 @@ console.log("examples", examples)
 
 Object.keys(examples).forEach(async (key) => {
   const componentName = key.replace("./examples/", "").replace(".vue", "");
-  // console.log(object);
   // const context = examples[key];
-  const context = await examples[key]() ;
+  const context = await examples[key]();
   // debugger
- if(context.show){
-  components[componentName] = context.default;
-  // components[componentName] = (await context()).default;
-  // debugger
+  if (context.show) {
+    components[componentName] = context.default;
+    // components[componentName] = (await context()).default;
+    // debugger
 
-  componentNameMap[componentName] = `${context.name}(${context.nameEn})`;
- }
+    componentNameMap[componentName] = `${context.name}(${context.nameEn})`;
+  }
 });
 console.log("components", components);
 console.log("componentNameMap", componentNameMap);
@@ -55,19 +54,19 @@ const demo = computed({
     const currentDemo = route.query.demo;
     debugger
     if (val !== currentDemo) {
-      console.log('route path ',route.path);
+      console.log('route path ', route.path);
       // debugger
       router.replace({
         path: route.path,
         query: {
-          demo:val,
+          demo: val,
         },
       });
     }
   },
   get() {
     // return route.query.demo || examples[0] && examples[0].name.replace("./examples/", "").replace(".vue", "");
-    return route.query.demo  || "Base"
+    return route.query.demo || "Base"
   },
 })
 
@@ -78,11 +77,7 @@ const demo = computed({
     <h1>demo</h1>
     demo:{{ demo }}
     <el-tabs v-model="demo">
-      <el-tab-pane :key="key"
-        :label="name"
-        :name="key"
-        lazy
-        v-for="( name, key ) in componentNameMap">
+      <el-tab-pane :key="key" :label="name" :name="key" lazy v-for="( name, key ) in componentNameMap">
         <!-- name:{{ name }}
         key:{{ key }} -->
         <div>
@@ -101,7 +96,6 @@ const demo = computed({
       </el-tab-pane>
     </el-tabs>
   </div>
-  
 </template>
 
 <style scoped>
@@ -111,9 +105,11 @@ const demo = computed({
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
