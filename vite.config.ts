@@ -11,7 +11,9 @@ export default defineConfig({
       /** 解决 stream buffer 无法使用 */
       // stream: "stream-browserify",
       // buffer: "buffer-browserify"
+      "assets": resolve(__dirname, "src/assets")
     }
   },
   plugins: [vue()],
+  base: "./"
 })
