@@ -26,7 +26,10 @@ const makeTableSortAble = () => {
   const tableCtxMap = window.__ElTableDraggableContext
   const instance = getCurrentInstance()
   console.log("instance", instance)
-  const children = instance.ctx.$el.children
+  console.log("instance el", instance.ctx.$el)
+  console.log("ref", wrapper.value)
+  // const children = instance.ctx.$el.children
+  const children = wrapper.value.children
 
   // const childrenNew = instance?.subTree.children
   const WRAPPER = '.el-table__body-wrapper tbody'
