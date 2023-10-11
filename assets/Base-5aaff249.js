@@ -1,0 +1,4 @@
+import{L as d}from"./ListViewer-4addaad1.js";import{a as p,c as b,_ as g}from"./ElTableDraggable.vue_vue_type_style_index_0_lang-f7c7b0a1.js";import{e as h,f,r as t,o as l,c as s,a as e,w as r,F as k,b as E,u as v,d as w}from"./index-571c22f2.js";const L=!0,O="简单列表拖拽",j="Base Draggable",F=h({__name:"Base",setup(y){const n=f(p()),c=`<ElTableDraggable>
+  <el-table>
+  </el-table>
+</ElTableDraggable>`,_=o=>{console.log("handleOnEnd参数",o)};return(o,B)=>{const m=t("el-table-column"),u=t("el-table"),i=t("highlightjs");return l(),s("div",null,[e(g,{onOnEnd:_},{default:r(()=>[e(u,{data:n,"row-key":"id"},{default:r(()=>[(l(!0),s(k,null,E(v(b),a=>(l(),w(m,{key:a.key,label:a.key,prop:a.key},null,8,["label","prop"]))),128))]),_:1},8,["data"])]),_:1}),e(d,{value:n},null,8,["value"]),e(i,{language:"html",code:c})])}}});export{F as default,O as name,j as nameEn,L as show};

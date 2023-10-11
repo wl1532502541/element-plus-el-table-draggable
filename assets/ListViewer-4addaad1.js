@@ -1,0 +1,1 @@
+import{e as o,l as c,o as r,c as _,t as a,_ as n}from"./index-571c22f2.js";const p={class:"code"},i=o({__name:"ListViewer",props:{value:{type:Array,required:!0}},setup(e){const s=e,t=c(()=>JSON.stringify(s.value,null,2));return(l,u)=>(r(),_("pre",p,a(t.value),1))}});const m=n(i,[["__scopeId","data-v-26033c8b"]]);export{m as L};
