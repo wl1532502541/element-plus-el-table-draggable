@@ -25,6 +25,7 @@ const emits = defineEmits(['onEnd', "update:loading"])
 const makeTableSortAble = () => {
   const tableCtxMap = window.__ElTableDraggableContext
   const instance = getCurrentInstance()
+  console.log("instance", instance)
   const children = instance.ctx.$el.children
 
   // const childrenNew = instance?.subTree.children
