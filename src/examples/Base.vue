@@ -1,13 +1,9 @@
 <template>
   <div>
-    <ElTableDraggable  v-on="$listeners" :tag="'div'" @onEnd="handleOnEnd">
+    <ElTableDraggable @onEnd="handleOnEnd">
       <el-table :data="list" row-key="id">
-        <el-table-column
-          :key="column.key"
-          :label="column.key"
-          :prop="column.key"
-          v-for="column of columns"
-        ></el-table-column>
+        <el-table-column :key="column.key" :label="column.key" :prop="column.key"
+          v-for="column of columns"></el-table-column>
       </el-table>
     </ElTableDraggable>
     <ListViewer :value="list" />
@@ -27,18 +23,12 @@ import { createData, columns } from '../utils/createTable'
 import { reactive } from 'vue'
 import ElTableDraggable from '@/components/ElTableDraggable.vue'
 const list = reactive(createData())
-const code =  
-      `<ElTableDraggable  v-on="$listeners" :tag="'div'">
-      <el-table :data="list" row-key="id">
-        <el-table-column
-          :key="column.key"
-          :label="column.key"
-          :prop="column.key"
-          v-for="column of columns"
-        ></el-table-column>
-      </el-table>
-    </ElTableDraggable>`
-const handleOnEnd = (args:any)=>{
-  console.log("handleOnEnd参数",args)
+const code =
+  `<ElTableDraggable>
+  <el-table>
+  </el-table>
+</ElTableDraggable>`
+const handleOnEnd = (args: any) => {
+  console.log("handleOnEnd参数", args)
 }
 </script>

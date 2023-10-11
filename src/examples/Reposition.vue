@@ -90,28 +90,14 @@ const activeNames = ref(null)
 const code = `
 <!-- 需求池 -->            
 <ElTableDraggable :group="pool.group" @on-end="handleOnEndSuccess" v-loading="loading">
-  <el-table :data="pool.data" row-key="id">
-    <el-table-column
-      :key="column.key"
-      :label="column.key"
-      :prop="column.key"
-      v-for="column of columns"
-    ></el-table-column>
-  </el-table>
+  <el-table ></el-table>
 </ElTableDraggable>
 
 <!-- 迭代池 -->
 <el-collapse v-model="activeNames">
   <el-collapse-item :title="iteration.iterationName" :name="iteration.iterationName" v-for="iteration in lists" >
     <ElTableDraggable  :group="iteration.group" @on-end="iteration.onEnd" v-loading="loading">
-      <el-table max-height="250" :data="iteration.data" row-key="id">
-        <el-table-column
-          :key="column.key"
-          :label="column.key"
-          :prop="column.key"
-          v-for="column of columns"
-        ></el-table-column>
-      </el-table>
+      <el-table></el-table>
     </ElTableDraggable>
   </el-collapse-item>
 </el-collapse>
@@ -123,7 +109,7 @@ const handleOnEndSuccess = (evt:any, reposition: Function)=>{
       .then(res=>{console.log("调用成功");})
       .catch(()=>{
         ElMessage.warning("请求失败 复原顺序")
-        // getData() // 重新拉一遍数据
+        // getData() // 重新拉一遍数据 nono 耗性能
         reposition()
       })
   }
@@ -135,7 +121,7 @@ const handleOnEndFail = (evt:any, reposition: Function)=>{
       .then(res=>{console.log("调用成功");})
       .catch(()=>{
         ElMessage.warning("请求失败 复原顺序")
-        // getData() // 重新拉一遍数据
+        // getData() // 重新拉一遍数据 nono 耗性能
         reposition()
       })
   }

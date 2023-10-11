@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<{ tag?: string; isColumn?: boolean }>(), 
   loading: true,
 })
 
+
 const wrapper = ref(null)
 
 const _sortable = ref(null)
